@@ -1,0 +1,88 @@
+{
+  "rules": [
+    {
+      "name": "Block card for premium users in England or Australia with certain price range",
+      "priority": 1,
+      "useAndLogic": true,
+      "conditions": [
+        { "type": "CountryCondition", "values": ["England", "Australia"] },
+        { "type": "PriceRangeCondition", "min": 100, "max": 20000 },
+        { "type": "UserTierCondition", "values": ["Silver", "Gold"]}
+      ],
+      "actions": [
+        { "type": "BlockCardAction" },
+        { "type": "SendEmailAction" }
+      ]
+    },
+    {
+      "name": "Block card for high-value premium users in England",
+      "priority": 2,
+      "useAndLogic": true,
+      "conditions": [
+        { "type": "CountryCondition", "values": ["England"] },
+        { "type": "PriceRangeCondition", "min": 1000, "max": 2000 },
+        { "type": "UserTierCondition", "values": ["Silver", "Gold"] }
+      ],
+      "actions": [
+        { "type": "BlockCardAction" },
+        { "type": "SendEmailAction" }
+      ]
+    },
+    {
+      "name": "Block card for high-value premium users in England",
+      "priority": 2,
+      "useAndLogic": true,
+      "conditions": [
+        { "type": "CountryCondition", "values": ["England", "UK"] },
+        { "type": "PriceRangeCondition", "min": 1000, "max": 2000 },
+        { "type": "UserTierCondition", "values": ["Silver", "Gold"] }
+      ],
+      "actions": [
+        { "type": "BlockCardAction" },
+        { "type": "SendEmailAction" }
+      ]
+    },
+    {
+      "name": "Block card for high-value premium users in England",
+      "priority": 2,
+      "useAndLogic": true,
+      "conditions": [
+        { "type": "CountryCondition", "values": ["UK", "Germany"] },
+        { "type": "PriceRangeCondition", "min": 1000, "max": 2000 },
+        { "type": "UserTierCondition", "values": ["Silver", "Gold"] }
+      ],
+      "actions": [
+        { "type": "BlockCardAction" },
+        { "type": "SendEmailAction" }
+      ]
+    },
+    {
+      "name": "Block card for high-value premium users in England",
+      "priority": 2,
+      "useAndLogic": true,
+      "conditions": [
+        { "type": "CountryCondition", "values": ["England", "Canada"] },
+        { "type": "PriceRangeCondition", "min": 2000, "max": 5000 },
+        { "type": "UserTierCondition", "values": ["Silver"] }
+      ],
+      "actions": [
+        { "type": "BlockCardAction" },
+        { "type": "SendEmailAction" }
+      ]
+    },
+    {
+      "name": "Block card for high-value premium users in England",
+      "priority": 2,
+      "useAndLogic": false,
+      "conditions": [
+        { "type": "CountryCondition", "values": ["India"] },
+        { "type": "PriceRangeCondition", "min": 100, "max": 20000 },
+        { "type": "UserTierCondition", "values": ["Platinum", "Gold"] }
+      ],
+      "actions": [
+        { "type": "BlockCardAction" },
+        { "type": "SendEmailAction" }
+      ]
+    }
+  ]
+}

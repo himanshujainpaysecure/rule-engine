@@ -1,0 +1,75 @@
+package rules; // Ensure to define a package for your rules
+
+import net.ps.dto.PaymentRequest;
+import net.ps.dto.PaymentResult;
+
+// Rule to initialize PaymentResult if it is null
+rule "Initialize PaymentResult"
+when
+    $p: PaymentRequest(result == null)
+then
+    PaymentResult result = new PaymentResult();
+    $p.setResult(result); // Initialize result field
+end
+
+// Rule for blocking high-risk payments
+rule "High Risk Payment Block"
+when
+    $p: PaymentRequest(
+        amount > 50000,
+        currency == "USD",
+        merchantRiskScore > 0.7
+    )
+then
+    $p.getResult().setApproved(false);
+    $p.getResult().setReason("High risk transaction blocked");
+end
+
+// Rule for applying discounts to preferred merchants
+rule "Preferred Merchant Discount"
+when
+    $p: PaymentRequest(
+        merchantTier == "PREMIUM",
+        amount < 10000
+    )
+then
+    System.out.println("Premium");
+
+    double discountAmount = $p.getAmount() * 0.05; // 5% discount
+    double finalAmount = $p.getAmount() - discountAmount;
+    $p.getResult().setApproved(true);
+    $p.getResult().setDiscount(0.05); // Set discount percentage
+    $p.getResult().setFinalAmount(finalAmount); // Set final amount
+    System.out.println("finalAmount: "+ finalAmount);
+
+end
+
+// Rule for routing payments to specific gateways
+rule "Route to Stripe for High-Value Transactions"
+when
+    $p: PaymentRequest(
+        amount < 10000,
+        merchantId == "MERCHANT1"
+    )
+then
+
+    $p.getResult().setApproved(true);
+    $p.getResult().setGateway("STRIPE");
+    //$p.getResult().setFinalAmount($p.getAmount()); // Final amount remains unchanged for routing
+
+end
+
+// Rule for routing payments to PayPal for low-value transactions
+rule "Route to PayPal for Low-Value Transactions"
+when
+    $p: PaymentRequest(
+        amount <= 1000,
+        merchantId == "MERCHANT2"
+    )
+then
+    System.out.println("MERCHANT2 to PayPAL");
+
+    $p.getResult().setApproved(true);
+    $p.getResult().setGateway("PAYPAL");
+    $p.getResult().setFinalAmount($p.getAmount()); // Final amount remains unchanged for routing
+end
