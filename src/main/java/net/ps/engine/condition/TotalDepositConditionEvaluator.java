@@ -2,12 +2,12 @@ package net.ps.engine.condition;
 
 import net.ps.engine.model.Order;
 
-public class TxnStatusCondition implements Condition {
+public class TotalDepositConditionEvaluator implements ConditionEvaluator {
 
     private final double minPrice;
     private final double maxPrice;
 
-    public TxnStatusCondition(double minPrice, double maxPrice) {
+    public TotalDepositConditionEvaluator(double minPrice, double maxPrice) {
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
     }

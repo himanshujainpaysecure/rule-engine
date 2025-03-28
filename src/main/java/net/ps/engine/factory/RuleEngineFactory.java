@@ -51,13 +51,13 @@ public class RuleEngineFactory {
         return new RuleEngine(rules);
     }
 
-    private static Condition createCondition(ConditionMapper conditionMapper) {
+    private static ConditionEvaluator createCondition(ConditionMapper conditionMapper) {
         // Convert the string condition type to the corresponding ConditionType enum
         ConditionType conditionType = ConditionType.fromString(conditionMapper.getType().getConditionString());
         return switch (conditionType) {
-            case COUNTRY_CONDITION -> new CountryCondition(conditionMapper.getValues());
-            case PRICE_RANGE_CONDITION -> new PriceRangeCondition(conditionMapper.getMin(), conditionMapper.getMax());
-            case USER_TIER_CONDITION -> new UserTierCondition(conditionMapper.getValues());
+            case COUNTRY_CONDITION -> new CountryConditionEvaluator(conditionMapper.getValues());
+            case PRICE_RANGE_CONDITION -> new PriceRangeConditionEvaluator(conditionMapper.getMin(), conditionMapper.getMax());
+            case USER_TIER_CONDITION -> new UserTierConditionEvaluator(conditionMapper.getValues());
             default -> throw new IllegalArgumentException("Unknown condition type: " + conditionType);
         };
     }

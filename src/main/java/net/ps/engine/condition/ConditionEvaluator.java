@@ -8,7 +8,7 @@ import java.util.function.Predicate;
  * This interface extends {@link Predicate} and adds an {@link #evaluate(Order)}
  * method for evaluating the condition against an order.
  */
-public interface Condition extends Predicate<Order> {
+public interface ConditionEvaluator extends Predicate<Order> {
     boolean evaluate(Order order);
 }
 

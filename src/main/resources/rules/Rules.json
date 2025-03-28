@@ -1,0 +1,36 @@
+{
+  "ruleName": "Block Card on Fraudulent Transaction",
+  "priority": 1,
+  "conditions": [
+    {
+      "logicalOperator": "AND",
+      "left": {
+        "parameter": "totalDeposit",
+        "operator": "greaterThan",
+        "value": 10000
+      },
+      "right": {
+        "parameter": "totalDeposit",
+        "operator": "lessThan",
+        "value": 20000
+      }
+    },
+    {
+      "logicalOperator": "OR",
+      "left": {
+        "parameter": "country",
+        "operator": "equals",
+        "value": "England"
+      },
+      "right": {
+        "parameter": "userTier",
+        "operator": "equals",
+        "value": "premium"
+      }
+    }
+  ],
+  "actions": [
+    "Block card",
+    "Send email"
+  ]
+}

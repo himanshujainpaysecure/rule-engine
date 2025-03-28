@@ -3,11 +3,11 @@ package net.ps.engine.condition;
 import net.ps.engine.model.Order;
 import java.util.Set;
 
-public class PaymentMethodCondition implements Condition {
+public class PaymentMethodConditionEvaluator implements ConditionEvaluator {
 
     private final Set<String> paymentMethods;
 
-    public PaymentMethodCondition(Set<String> paymentMethods) {
+    public PaymentMethodConditionEvaluator(Set<String> paymentMethods) {
         this.paymentMethods = paymentMethods;
     }
 

@@ -3,19 +3,19 @@ package net.ps.engine.condition;
 import net.ps.engine.model.Order;
 
 /**
- * The {@code PriceRangeCondition} class implements the {@link Condition} interface and represents
+ * The {@code PriceRangeCondition} class implements the {@link ConditionEvaluator} interface and represents
  * a condition for filtering orders based on a price range. It checks whether an order's total amount
  * falls within a specified minimum and maximum price range.
  * <p>
  * This class provides methods to evaluate whether a given order meets the price range condition.
  * </p>
  */
-public class PriceRangeCondition implements Condition {
+public class PriceRangeConditionEvaluator implements ConditionEvaluator {
 
     private final double minPrice;
     private final double maxPrice;
 
-    public PriceRangeCondition(double minPrice, double maxPrice) {
+    public PriceRangeConditionEvaluator(double minPrice, double maxPrice) {
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
     }

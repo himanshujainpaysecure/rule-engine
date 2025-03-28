@@ -4,11 +4,11 @@ import net.ps.engine.model.Order;
 
 import java.util.Set;
 
-public class CountryCondition implements Condition {
+public class CountryConditionEvaluator implements ConditionEvaluator {
 
     private final Set<String> allowedCountries;
 
-    public CountryCondition(Set<String> allowedCountries) {
+    public CountryConditionEvaluator(Set<String> allowedCountries) {
         this.allowedCountries = allowedCountries;
     }
 
